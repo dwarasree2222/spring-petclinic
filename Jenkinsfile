@@ -11,8 +11,7 @@ pipeline
 		stage('git'){
 			steps{
 					git url: 'https://github.com/dwarasree2222/spring-petclinic.git',
-						branch: 'main'
-			}
+						branch: 'qa'
 		}
 		stage('shell'){
 			steps{
@@ -24,7 +23,7 @@ pipeline
 		}
 		stage('archiving'){
 			steps{
-					archiveArtifacts includes: "**/target/spring*.jar"
+					archiveArtifacts '**/target/spring*.jar'
 			}
 		}
 		

@@ -1,10 +1,10 @@
 pipeline{
-        agent any
-	//agent {label 'UBUNTU'}
+        //agent any
+	agent {label 'UBUNTU'}
                 
-	//triggers{
-        //    cron('* * * * *')
-       // }
+	triggers{
+            cron('H 23 * * 1-5')
+        }
 	parameters {
 	choice(name: 'MAVEN_GOAL', choices: ['clean', 'install', 'package'], description: 'Pick something')	
 	}
@@ -12,7 +12,7 @@ pipeline{
 		stage('git'){
 			steps{
 					git url: 'https://github.com/dwarasree2222/spring-petclinic.git',
-						branch: 'main'
+						branch: 'sprint-release-branch'
 				}
 		}
 		stage('shell'){

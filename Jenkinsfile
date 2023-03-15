@@ -1,6 +1,6 @@
-pipeline
-	{
-	agent {label 'UBUNTU'}
+pipeline{
+        agent none
+	//agent {label 'UBUNTU'}
                 
 	triggers{
             cron('* * * * *')
@@ -29,24 +29,23 @@ pipeline
 		}
 		
 		/*stage('build && SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('SonarCloud') {
-                    // Optionally use a Maven environment you've configured already
-                    //withMaven(maven:'Maven 3.5') {
+                         steps {
+                                        withSonarQubeEnv('SonarCloud') {
+                                        // Optionally use a Maven environment you've configured already
+                                        //withMaven(maven:'Maven 3.5') {
 					
-                        sh 'mvn clean package sonar:sonar -Dsonar.organization=spring-petclinic'
-                    //}
+                                        sh 'mvn clean package sonar:sonar -Dsonar.organization=spring-petclinic'
+                        }
                 }
-            }
-        }
-		stage("Quality Gate"){
-            steps {
-              timeout(time: 1, unit: 'HOURS'){
-                waitForQualityGate abortPipeline: true
-			  }
-            }
-        }*/
+        
+       	        stage("Quality Gate"){
+                        steps {
+                                        timeout(time: 1, unit: 'HOURS'){
+                                        waitForQualityGate abortPipeline: true
+			}
+                }*/
+        
 
-	}
+        }
 }
      

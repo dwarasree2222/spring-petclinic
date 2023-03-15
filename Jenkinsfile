@@ -12,7 +12,8 @@ pipeline{
 		stage('git'){
 			steps{
 					git url: 'https://github.com/dwarasree2222/spring-petclinic.git',
-						branch: 'qa'
+						branch: 'main'
+				}
 		}
 		stage('shell'){
 			steps{
@@ -46,6 +47,5 @@ pipeline{
                 }*/
         
 
-        }
+    }
 }
-     

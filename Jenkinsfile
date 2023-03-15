@@ -1,10 +1,10 @@
 pipeline{
-        agent none
+        agent any
 	//agent {label 'UBUNTU'}
                 
-	triggers{
-            cron('* * * * *')
-        }
+	//triggers{
+        //    cron('* * * * *')
+       // }
 	parameters {
 	choice(name: 'MAVEN_GOAL', choices: ['clean', 'install', 'package'], description: 'Pick something')	
 	}

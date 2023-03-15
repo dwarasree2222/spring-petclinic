@@ -35,7 +35,22 @@ pipeline{
 					unstash name:'spc'
 			}
 		
-		}     
+		}  
+                stage('build && SonarQube analysis') {
+                         steps {
+                                        withSonarQubeEnv('SonarCloud') {
+                                        sh 'mvn install package sonar:sonar -Dsonar.organization=spring-petclinic'
+                                        }
+                         }
+                }
+        
+       	        stage("Quality Gate"){
+                        steps {
+                                        timeout(time: 1, unit: 'HOURS'){
+                                        waitForQualityGate abortPipeline: true
+			                }
+                        }
+                }
 
     }
 }

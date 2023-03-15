@@ -23,29 +23,19 @@ pipeline{
 			}   
 
 		}
-		stage('archiving'){
+		stage('archiving and stash'){
 			steps{
-					archiveArtifacts '**/target/spring*.jar'
+					archiveArtifacts artifacts: '**/target/spring*.jar'
+                                        stash name: 'spc',
+				              includes: '**/target/spring*.jar'
 			}
 		}
-		
-		/*stage('build && SonarQube analysis') {
-                         steps {
-                                        withSonarQubeEnv('SonarCloud') {
-                                        // Optionally use a Maven environment you've configured already
-                                        //withMaven(maven:'Maven 3.5') {
-					
-                                        sh 'mvn clean package sonar:sonar -Dsonar.organization=spring-petclinic'
-                        }
-                }
-        
-       	        stage("Quality Gate"){
-                        steps {
-                                        timeout(time: 1, unit: 'HOURS'){
-                                        waitForQualityGate abortPipeline: true
+                stage('unstash'){
+			steps{
+					unstash name:'spc'
 			}
-                }*/
-        
+		
+		}     
 
     }
 }

@@ -1,6 +1,6 @@
 pipeline{
         agent any
-	//agent {label 'UBUNTU'}
+	agent {label 'UBUNTU'}
                 
 	//triggers{
         //    cron('* * * * *')
@@ -12,7 +12,7 @@ pipeline{
 		stage('git'){
 			steps{
 					git url: 'https://github.com/dwarasree2222/spring-petclinic.git',
-						branch: 'main'
+						branch: 'dev'
 				}
 		}
 		stage('shell'){

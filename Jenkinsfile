@@ -1,6 +1,6 @@
 pipeline{
-        agent any
-	//agent {label 'UBUNTU'}
+        //agent any
+	agent {label 'UBUNTU'}
                 
 	//triggers{
         //    cron('* * * * *')
@@ -20,6 +20,7 @@ pipeline{
 					sh 'export PATH="/usr/lib/jvm/java-1.17.0-openjdk-amd64/bin:$PATH"'
 					sh "mvn ${params.MAVEN_GOAL}"
 					  //sh 'export PATH="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
+                                        sh java -jar spring-petclinic-3.0.0-SNAPSHOT.jar
 			}   
 
 		}

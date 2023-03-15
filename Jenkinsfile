@@ -6,7 +6,7 @@ pipeline{
             cron('* * * * *')
         }
 	parameters {
-	choice(name: 'MAVEN_GOAL', choices: ['clean', 'install', 'package'], defaultValue: 'clean', description: 'Pick something')	
+	choice(name: 'MAVEN_GOAL', choices: ['clean', 'install', 'package'], description: 'Pick something')	
 	}
 	stages{
 		stage('git'){
